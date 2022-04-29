@@ -1,12 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { checkForUpdateAsync, Manifest} from 'expo-updates';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 export default function App() {
+  const checkUpdate = async () => {
+    console.log('manifest', Manifest )
+    const status = await checkForUpdateAsync()
+    console.log('status', status )
+  }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <TouchableOpacity style={styles.container} onPress={checkUpdate} >
+      <Text>Press to check update</Text>
       <StatusBar style="auto" />
-    </View>
+    </TouchableOpacity>
   );
 }
 
